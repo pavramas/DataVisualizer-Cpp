@@ -9,7 +9,11 @@ Bheap::Bheap(QWidget *parent) :
     ui(new Ui::Bheap)
 {
     ui->setupUi(this);
-
+    QPixmap bkgnd(":files/images/bckgnd.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);
     QRectF scene_coords;
 
     scene_coords.setX(-250); scene_coords.setY(-250);
@@ -104,7 +108,7 @@ void Bheap::insertElem(QString val)
 void Bheap::removeElem(int idx)
 {
     bTree->setData((idx-1), bTree->getDataStr(bTree->getNumEntries()-1));
-    bTree->setData((bTree->getNumEntries()-1), "0");
+    bTree->setData((bTree->getNumEntries()-1), QString::number(INVALID_DATA));
     bTree->decrEntries(1);
 
     // Adjust the heap

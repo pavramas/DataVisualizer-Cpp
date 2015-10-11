@@ -133,6 +133,11 @@ Ui::binaryTree::binaryTree(QGraphicsView *v, QGraphicsScene *s, QRectF coords)
     scene->setFocus();
     sceneCoords = baseCoords = coords;
     numEntries = 0;
+
+    for (int idx = 0; idx < MAX_ENTRIES; idx++) {
+        QString val = QString::number(INVALID_DATA);
+        treeData[idx] = val;
+    }
 }
 
 // API to adjust scene size if the tree grows
@@ -190,9 +195,16 @@ void Ui::binaryTree::insertNode()
        int currHeight, prevHeight;
        currHeight=prevHeight=0;
        for (int pos=1; pos<numEntries; pos++) {
+            currHeight = (int)log2((double)pos);
+            // If the height is not balanced
+            // then we have an invalid value at the
+            // position.
+            if (treeData[pos-1].toInt() == INVALID_DATA) {
+                continue;
+            }
+
             Ui::EllipseElement *n = tMap[pos];
             QGraphicsTextItem *t = n->text;
-            currHeight = (int)log2((double)pos);
             // If the height increase, we need to position
             // the nodes farther to make room for the next level.
             if (newHeight>treeHeight) {
@@ -207,9 +219,15 @@ void Ui::binaryTree::insertNode()
                     // for the subtree rooted at "currHeight". We
                     // want to know that so we can position ourselves
                     // right to make room for the subtrees/leaves.
-                    if (currHeight != prevHeight) {
+                    if ((currHeight != prevHeight) &&
+                        (treeData[pos].toInt() != INVALID_DATA) &&
+                         (getData(2*(pos-1)) != INVALID_DATA)) {
                         offset = leaves/pow(2,currHeight);
                         prevHeight = currHeight;
+                    } else {
+                        // Keep the offset the same if the tree is sparse.
+                        prevHeight = currHeight;
+                        offset = 1;
                     }
                     if (pos%2) {
                         n->pos->setX(parent->pos->x()+(offset*50)); n->pos->setY(n->pos->y()+10);
@@ -315,6 +333,13 @@ void Ui::binaryTree::removeNode()
              // If we are at (height > 1), the node
              // have to be moved according to the parent.
              if (pos/2) {
+                 // If the height is not balanced
+                 // then we have an invalid value at the
+                 // position.
+                 if (treeData[pos-1].toInt() == INVALID_DATA) {
+                     continue;
+                 }
+
                  QGraphicsLineItem *l = n->plink;
                  QLineF line = l->line();
                  // If the new height of our treeData is N, we have
@@ -322,9 +347,15 @@ void Ui::binaryTree::removeNode()
                  // for the subtree rooted at "currHeight". We
                  // want to know that so we can position the nodes
                  // back to where they were before expansion.
-                 if (currHeight != prevHeight) {
+                 if ((currHeight != prevHeight) &&
+                     (treeData[pos].toInt() != INVALID_DATA) &&
+                     (getData(2*(pos-1)) != INVALID_DATA)) {
                      offset = leaves/pow(2,currHeight);
                      prevHeight = currHeight;
+                 } else {
+                     // Keep the offset the same if the tree is sparse.
+                     prevHeight = currHeight;
+                     offset = 1;
                  }
                  if (pos%2) {
                      n->pos->setX(parent->pos->x()-(offset*50)); n->pos->setY(n->pos->y()-10);

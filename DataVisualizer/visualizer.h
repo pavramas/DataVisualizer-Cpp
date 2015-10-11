@@ -10,8 +10,15 @@
 #include <QPointF>
 
 #define MAX_ENTRIES 500
+#define INVALID_DATA 65535
 
 namespace Ui {
+   typedef enum {
+       QUEUE,
+       STACK,
+       MINHEAP,
+       BST
+   } dataType;
    void genRand(int *list, int count);
    typedef struct {
        QGraphicsRectItem *rect;
@@ -80,7 +87,7 @@ namespace Ui {
        void setNextData(QString val) { treeData[numEntries+1] = val; }
        int getData(int idx) { return (treeData[idx].toInt()); }
        QString getDataStr(int idx) { return (treeData[idx]); }
-       void setData(int idx, QString val) { treeData[idx] = val; }
+       void setData(int idx, QString val) { if (idx < MAX_ENTRIES) { treeData[idx] = val;} }
 
    };
    typedef class binaryTree binaryTree;
