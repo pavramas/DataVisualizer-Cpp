@@ -18,17 +18,29 @@ SOURCES += main.cpp\
     queue.cpp \
     stack.cpp \
     bst.cpp \
-    visualizer.cpp
+    visualizer.cpp \
+    imgview.cpp \
+    queueform.cpp \
+    stackform.cpp
 
 HEADERS  += mainwindow.h \
     bheap.h \
     queue.h \
     stack.h \
     visualizer.h \
-    bst.h
+    bst.h \
+    imgview.h \
+    queueform.h \
+    stackform.h
 
 FORMS    += mainwindow.ui \
     bheap.ui \
     queue.ui \
     stack.ui \
-    bst.ui
+    bst.ui \
+    imgview.ui
+
+OTHER_FILES +=
+
+RESOURCES += \
+    Res.qrc

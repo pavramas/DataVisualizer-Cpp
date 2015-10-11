@@ -21,7 +21,6 @@ class Bheap : public QWidget
 public:
     explicit Bheap(QWidget *parent = 0);
     ~Bheap();
-    void adjustsceneRect(QRectF offset);
     void insertElem(QString val);
     void removeElem(int idx);
     void cleanupElem(Ui::EllipseElement *node);
@@ -40,11 +39,6 @@ private slots:
 private:
     Ui::Bheap *ui;
     QGraphicsScene *scene;
-   // int num_of_entries;
-   // Ui::EllipseElement *hmap[MAX_ENTRIES];
-   // QString heap[MAX_ENTRIES];
-   // int heap_height;
-   // QRectF scene_coords, base_coords;
     QValidator *v;
     Ui::binaryTree *bTree;
 };

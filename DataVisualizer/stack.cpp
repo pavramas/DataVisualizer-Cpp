@@ -8,7 +8,11 @@ stack::stack(QWidget *parent) :
     ui->setupUi(this);
     QGraphicsScene *scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
-
+    QPixmap bkgnd(":files/images/bckgnd.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);
     QRectF coords;
     coords.setX(-1000); coords.setY(-1000);
     coords.setWidth(2000); coords.setHeight(2000);
