@@ -19,9 +19,7 @@ SOURCES += main.cpp\
     stack.cpp \
     bst.cpp \
     visualizer.cpp \
-    imgview.cpp \
-    queueform.cpp \
-    stackform.cpp
+    imgview.cpp
 
 HEADERS  += mainwindow.h \
     bheap.h \
@@ -29,9 +27,7 @@ HEADERS  += mainwindow.h \
     stack.h \
     visualizer.h \
     bst.h \
-    imgview.h \
-    queueform.h \
-    stackform.h
+    imgview.h
 
 FORMS    += mainwindow.ui \
     bheap.ui \
