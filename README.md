@@ -6,7 +6,7 @@ Data visualizer is a QT/C++ based application designed to give a visual represen
 
 ####Tools and Technology
 
-The project has been developed in QT Creator IDE, using C++ based QGraphics framework for GUI elements. Specific instructions on how to download, setup and run using QT creator are present in the Instructions Wiki.
+The project has been developed in QT Creator IDE, using C++ based QGraphics framework for GUI elements. Specific instructions on how to download, setup and run using QT creator are present in the [Instructions Wiki](https://github.com/GHCFOSS/DataVisualizer-Cpp/wiki).
 
 ####The Repository Details
 
@@ -28,7 +28,7 @@ Top level GUI source/UI is handled in files titled "main".
 
 ####How to work on an Issue
 
-You can view the open issues for the repository under Issues. If there is a particular existing issue that you would like to fix, please leave a comment below it with intent and details of how you intend to fix it. This will reduce duplication of effort.If you would like to propose an enhancement, or report a bug that you would like to work on, feel free to open new issues and we will assign them to you.
+You can view the open issues for the repository under [Issues](https://github.com/GHCFOSS/DataVisualizer-Cpp/issues). If there is a particular existing issue that you would like to fix, please leave a comment below it with intent and details of how you intend to fix it. This will reduce duplication of effort.If you would like to propose an enhancement, or report a bug that you would like to work on, feel free to open new issues and we will assign them to you.
 
 ####How to get help
 
